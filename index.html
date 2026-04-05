@@ -6,7 +6,7 @@
     <title>Prabin Thapa | Official</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,7 +14,7 @@
         body {
             height: 100vh;
             width: 100vw;
-            background-color: #030611;
+            background-color: #000; /* Dark base */
             font-family: 'Inter', sans-serif;
             display: flex;
             align-items: center; 
@@ -23,9 +23,8 @@
             position: relative;
         }
 
-        /* Full Brightness Background Layer */
-        body::before {
-            content: "";
+        /* 1. SEPARATED BACKGROUND LAYER */
+        .bg-layer {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
@@ -33,37 +32,30 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            z-index: -1;
+            z-index: 1; /* Sits at the bottom */
         }
 
-        /* THE ULTRA-TRANSPARENT CARD */
-        .glass-card {
+        /* 2. THE CARD - MAXIMUM TRANSPARENCY */
+        .details-container {
             margin-left: 8%; 
-            /* Set to 0.1 for maximum transparency */
-            background: rgba(255, 255, 255, 0.1); 
+            position: relative;
+            z-index: 9999; /* HIGHEST PRIORITY - This forces it to show */
             
-            /* High blur makes it look like real glass */
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            /* 0.05 opacity is as close to invisible as you can get while keeping the glass look */
+            background: rgba(255, 255, 255, 0.05); 
             
-            /* Bright border helps define the shape on a transparent background */
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            /* High blur creates the 'Glass' look */
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 40px;
             padding: 60px 40px;
             width: 380px;
             text-align: center;
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
             
-            position: relative;
-            z-index: 1000; 
-            
-            /* Smooth float animation */
-            animation: slideInLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1), float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            animation: slideInLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .profile-img {
@@ -72,7 +64,7 @@
             border: 3px solid #38bdf8;
             object-fit: cover;
             margin-bottom: 25px;
-            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.5));
+            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.4));
         }
 
         h1 {
@@ -81,7 +73,8 @@
             font-size: 2.4rem;
             text-transform: uppercase;
             margin-bottom: 8px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Shadow ensures text is readable on white */
+            /* Text shadow is vital for white text on a transparent background */
+            text-shadow: 0 4px 10px rgba(0,0,0,0.8); 
         }
 
         .tagline {
@@ -91,6 +84,7 @@
             letter-spacing: 5px;
             font-weight: 700;
             margin-bottom: 40px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .social-nav {
@@ -101,11 +95,50 @@
 
         .social-nav a {
             color: white;
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             width: 55px; height: 55px;
             display: flex; align-items: center; justify-content: center;
-            border-radius: 50%; /* Circle icons for a cleaner look */
+            border-radius: 15px;
             text-decoration: none;
             transition: 0.4s;
-            font-size: 1.4rem;
-            border: 1px
+            font-size: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-nav a:hover {
+            background: #38bdf8;
+            color: #000;
+            transform: scale(1.15);
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-150px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { justify-content: center; }
+            .details-container { margin-left: 0; width: 92%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-layer"></div>
+
+    <div class="details-container">
+        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
+             onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=38bdf8&color=fff&size=150'">
+        
+        <h1>Prabin Thapa</h1>
+        <div class="tagline">Digital Explorer & Learner</div>
+        
+        <nav class="social-nav">
+            <a href="https://youtube.com/@allin1326" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://facebook.com/prabinthapa77777" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/MrCODER-777" target="_blank"><i class="fab fa-github"></i></a>
+        </nav>
+    </div>
+
+</body>
+</html>
