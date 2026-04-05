@@ -2,80 +2,78 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prabin Thapa | Official</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
     
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+            height: 100vh;
             width: 100vw;
-            /* Full brightness background - no dark overlay */
+            /* 1. Full Brightness Background */
             background-image: url('Background.jpg');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             background-repeat: no-repeat;
+            background-attachment: fixed;
             font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Prevents scrollbars if image is large */
+            overflow: hidden;
+            position: relative;
         }
 
-        /* Positioning the card in the bottom-right corner */
-        .glass-card {
+        /* 2. THE CONTAINER - This ensures your details show up */
+        .details-box {
             position: absolute;
-            bottom: 40px;
-            right: 40px;
+            bottom: 40px; /* Distance from bottom */
+            right: 40px;  /* Distance from right */
             
-            /* Glass effect with higher contrast to stay readable on bright backgrounds */
-            background: rgba(15, 23, 42, 0.8); 
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 35px;
+            background: rgba(15, 23, 42, 0.9); /* Dark background for visibility */
+            backdrop-filter: blur(10px);
+            border: 2px solid #38bdf8;
+            border-radius: 20px;
+            padding: 30px;
             width: 320px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            animation: slideIn 1s ease-out;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            z-index: 9999; /* Forces this to be at the very front */
+            animation: slideIn 0.8s ease-out;
         }
 
         .profile-img {
-            width: 110px;
-            height: 110px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             border: 3px solid #38bdf8;
-            object-fit: cover;
             margin-bottom: 15px;
+            object-fit: cover;
         }
 
         h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            margin: 0;
             color: #ffffff;
+            font-size: 1.6rem;
+            margin-bottom: 5px;
             text-transform: uppercase;
         }
 
         .tagline {
             color: #38bdf8;
-            text-transform: uppercase;
-            letter-spacing: 2px;
             font-size: 0.75rem;
-            margin: 8px 0 25px;
-            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-weight: 400;
         }
 
-        .social-nav {
+        .socials {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 15px;
         }
 
-        .social-nav a {
+        .socials a {
             color: white;
             background: rgba(255, 255, 255, 0.1);
             width: 45px;
@@ -89,10 +87,10 @@
             font-size: 1.2rem;
         }
 
-        .social-nav a:hover {
+        .socials a:hover {
             background: #38bdf8;
             color: #0f172a;
-            transform: scale(1.1);
+            transform: translateY(-5px);
         }
 
         @keyframes slideIn {
@@ -100,12 +98,12 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 480px) {
-            .glass-card {
+        /* Mobile View */
+        @media (max-width: 500px) {
+            .details-box {
                 bottom: 20px;
                 right: 20px;
-                left: 20px; /* Center it on small phones */
+                left: 20px;
                 width: auto;
             }
         }
@@ -113,5 +111,5 @@
 </head>
 <body>
 
-    <div class="glass-card">
-        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" onerror="this.src='
+    <div class="details-box">
+        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin
