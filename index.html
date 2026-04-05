@@ -6,7 +6,7 @@
     <title>Prabin Thapa | Official</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -14,130 +14,129 @@
         body {
             height: 100vh;
             width: 100vw;
-            background-color: #030611;
+            /* FALLBACK: If Background.jpg is missing, this dark blue shows up instead */
+            background: #030611 linear-gradient(135deg, #030611 0%, #0a0a2e 100%);
+            /* PRIMARY: Your actual image */
+            background-image: url('Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
             font-family: 'Inter', sans-serif;
-            overflow: hidden;
-            /* Flex ensures middle-left positioning */
             display: flex;
             align-items: center; 
             justify-content: flex-start;
-            /* Direct background image application */
-            background: url('Background.jpg') no-repeat center center/cover;
+            overflow: hidden;
         }
 
-        /* THE CARD - Positioned with Margin */
         .glass-card {
             margin-left: 8%;
             position: relative;
-            z-index: 999;
+            z-index: 9999;
             
-            /* High Contrast Transparency */
-            background: rgba(10, 10, 20, 0.4); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            /* High visibility transparency */
+            background: rgba(15, 15, 25, 0.7); 
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             
-            border: 1px solid rgba(168, 85, 247, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 40px;
-            padding: 50px 40px;
-            width: 440px;
+            padding: 50px;
+            width: 450px;
             text-align: center;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.9);
+            border-left: 5px solid #ff4d4d; /* Red Accent */
             
-            animation: slideIn 1s ease-out;
+            animation: slideIn 1s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* ATTRACTIVE SHINY NAME */
+        /* ATTRACTIVE NAME - Chrome Blue */
         h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3rem;
-            font-weight: 900;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 2.6rem;
             text-transform: uppercase;
-            letter-spacing: -2px;
-            margin-bottom: 10px;
+            letter-spacing: -1px;
+            margin-bottom: 15px;
             
-            /* Purple & White Shiny Gradient */
-            background: linear-gradient(90deg, #fff, #a855f7, #fff, #a855f7, #fff);
+            background: linear-gradient(90deg, #fff, #38bdf8, #fff);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shine 4s linear infinite;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
         }
 
-        /* TYPING AREA */
-        .about-box {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(168, 85, 247, 0.3);
-            text-align: left;
-            min-height: 100px;
-        }
-
+        /* ABOUT ME - Shiny Red */
         .about-label {
-            color: #a855f7;
-            font-size: 0.7rem;
+            font-family: 'Montserrat', sans-serif;
+            color: #ff4d4d;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            font-weight: 700;
-            margin-bottom: 8px;
+            letter-spacing: 5px;
+            font-weight: 900;
+            margin-bottom: 15px;
             display: block;
+            
+            background: linear-gradient(90deg, #ff4d4d, #ffffff, #ff4d4d);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
         }
 
-        #typing-content {
-            color: #ffffff;
+        #typing-text {
+            color: #cbd5e1;
             font-size: 0.95rem;
-            line-height: 1.6;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            line-height: 1.7;
+            font-weight: 400;
         }
 
         .cursor {
-            color: #a855f7;
+            color: #ff4d4d;
             font-weight: bold;
             animation: blink 0.8s infinite;
         }
 
-        /* IMAGE & SOCIALS */
         .profile-img {
-            width: 120px; height: 120px;
+            width: 130px; height: 130px;
             border-radius: 50%;
-            border: 3px solid #a855f7;
-            margin-bottom: 20px;
+            border: 4px solid #ff4d4d;
+            margin-bottom: 25px;
             object-fit: cover;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+            box-shadow: 0 0 30px rgba(255, 77, 77, 0.3);
         }
 
         .socials {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 15px;
+            margin-bottom: 25px;
         }
 
         .socials a {
             color: #ffffff;
-            background: rgba(168, 85, 247, 0.15);
-            width: 45px; height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            width: 50px; height: 50px;
             display: flex; align-items: center; justify-content: center;
             border-radius: 12px;
             text-decoration: none;
-            border: 1px solid rgba(168, 85, 247, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: 0.3s;
+            font-size: 1.4rem;
         }
 
         .socials a:hover {
-            background: #a855f7;
+            background: #ff4d4d;
             transform: translateY(-5px);
         }
 
-        /* ANIMATIONS */
         @keyframes shine { to { background-position: 200% center; } }
         @keyframes blink { 50% { opacity: 0; } }
         @keyframes slideIn { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
 
         @media (max-width: 600px) {
             body { justify-content: center; }
-            .glass-card { margin-left: 0; width: 92%; }
-            h1 { font-size: 2.2rem; }
+            .glass-card { margin-left: 0; width: 92%; padding: 40px 20px; }
+            h1 { font-size: 1.8rem; }
         }
     </style>
 </head>
@@ -145,7 +144,7 @@
 
     <div class="glass-card">
         <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
-             onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=a855f7&color=fff'">
+             onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=ff4d4d&color=fff'">
         
         <h1>Prabin Thapa</h1>
         
@@ -155,26 +154,25 @@
             <a href="https://github.com/MrCODER-777" target="_blank"><i class="fab fa-github"></i></a>
         </div>
 
-        <div class="about-box">
+        <div style="text-align: left; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
             <span class="about-label">About Me</span>
-            <span id="typing-content"></span><span class="cursor">|</span>
+            <span id="typing-text"></span><span class="cursor">|</span>
         </div>
     </div>
 
     <script>
-        const bio = "I am a Digital Explorer and Creative Learner. Passionate about coding, content creation, and building unique digital experiences. Always seeking new ways to innovate and grow.";
-        let i = 0;
-        const speed = 40; 
+        const bioText = "I am a Digital Explorer and Creative Learner. Passionate about coding, content creation, and building unique digital experiences. Always seeking new ways to innovate and grow.";
+        let charIndex = 0;
 
-        function startTyping() {
-            if (i < bio.length) {
-                document.getElementById("typing-content").innerHTML += bio.charAt(i);
-                i++;
-                setTimeout(startTyping, speed);
+        function type() {
+            const target = document.getElementById("typing-text");
+            if (target && charIndex < bioText.length) {
+                target.innerHTML += bioText.charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 40);
             }
         }
-
-        window.onload = startTyping;
+        window.onload = type;
     </script>
 
 </body>
