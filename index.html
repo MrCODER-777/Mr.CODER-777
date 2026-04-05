@@ -14,55 +14,127 @@
         body {
             height: 100vh;
             width: 100vw;
-            /* 1. Background Image with Full Brightness */
+            background-color: #030611; /* Fallback dark color */
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            align-items: center; 
+            justify-content: flex-start; 
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 1. BACKGROUND IMAGE LAYER - Pushed to the absolute bottom */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: url('Background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
-            
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            align-items: center; /* Vertical Middle */
-            justify-content: flex-start; /* Horizontal Left */
-            overflow: hidden;
+            z-index: -1; /* This is the most important line */
         }
 
-        /* 2. THE CARD - Translucent and Animated */
+        /* 2. THE CARD - Transparent, Blurred, and Animated */
         .glass-card {
-            margin-left: 10%; /* Spacing from left edge */
-            
-            /* Glassmorphism Fix for Visibility on Bright Backgrounds */
-            background: rgba(0, 0, 0, 0.4); /* Reduced to a very subtle 0.4 opacity dark layer */
-            backdrop-filter: blur(10px); /* The "frosted glass" blur effect */
-            -webkit-backdrop-filter: blur(10px); /* Webkit support (Safari) */
-            
-            border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle white border */
-            border-radius: 30px;
+            margin-left: 8%; 
+            background: rgba(15, 23, 42, 0.7); /* Slightly darker for contrast */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 35px;
             padding: 50px 40px;
-            width: 350px;
+            width: 360px;
             text-align: center;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
             
-            /* Ensures it stays in front of the background image */
-            position: relative; 
-            z-index: 100; 
+            /* Forces it to the front */
+            position: relative;
+            z-index: 1000; 
             
-            /* THE ENTRANCE ANIMATION */
-            animation: fadeInSlideUp 1.2s ease-out;
-        }
-
-        /* 3. Entrance Animation Definition */
-        @keyframes fadeInSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            /* Entrance Animation */
+            animation: slideInLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .profile-img {
-            width
+            width: 140px; height: 140px;
+            border-radius: 50%;
+            border: 4px solid #38bdf8;
+            object-fit: cover;
+            margin-bottom: 25px;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            color: #38bdf8;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 700;
+            margin-bottom: 35px;
+        }
+
+        .social-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-nav a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 55px; height: 55px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 1.4rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-nav a:hover {
+            background: #38bdf8;
+            color: #030611;
+            transform: translateY(-8px) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-150px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { justify-content: center; }
+            .glass-card { margin-left: 0; width: 90%; padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
+             onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=38bdf8&color=fff&size=150'">
+        
+        <h1>Prabin Thapa</h1>
+        <div class="tagline">Digital Explorer & Learner</div>
+        
+        <nav class="social-nav">
+            <a href="https://youtube.com/@allin1326" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://facebook.com/prabinthapa77777" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/MrCODER-777" target="_blank"><i class="fab fa-github"></i></a>
+        </nav>
+    </div>
+
+</body>
+</html>
