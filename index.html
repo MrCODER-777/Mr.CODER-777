@@ -2,96 +2,125 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prabin Thapa | Official</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Prabin Thapa | Official Website</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7); /* Made slightly transparent for the background */
+            --accent-color: #38bdf8;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+        }
+
         body {
             margin: 0;
-            background: radial-gradient(circle at center, #1e293b 0%, #030611 100%);
-            height: 100vh;
+            padding: 0;
+            /* Added your Background.jpg here */
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('Background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
             display: flex;
+            flex-direction: column;
+            min-height: 100vh;
             justify-content: center;
             align-items: center;
-            font-family: 'Segoe UI', sans-serif;
-            overflow: hidden;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 50px;
-            border-radius: 40px;
+        /* Hero Section Styling */
+        .masthead {
             text-align: center;
-            width: 350px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-            animation: float 6s ease-in-out infinite;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05); /* Soft glass effect */
+            backdrop-filter: blur(10px); /* Blurs the background image behind the card */
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 1.5s ease-in-out;
+            max-width: 500px;
+            width: 90%;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .avatar-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 2rem;
         }
 
-        .profile-img {
-            width: 120px;
-            height: 120px;
+        .masthead-avatar {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 3px solid #38bdf8;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
-            margin-bottom: 20px;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            transition: transform 0.3s ease;
         }
 
-        h1 {
-            color: white;
-            margin: 10px 0;
-            font-size: 2rem;
+        .masthead-avatar:hover {
+            transform: scale(1.05);
         }
 
-        .subtitle {
-            color: #38bdf8;
+        .masthead-heading {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.8rem;
-            margin-bottom: 30px;
+            margin-bottom: 0.5rem;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .socials {
+        .masthead-subheading {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Social Icons */
+        nav.social-links {
             display: flex;
+            gap: 20px;
             justify-content: center;
-            gap: 15px;
         }
 
-        .btn {
-            color: white;
-            background: rgba(255,255,255,0.1);
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
             width: 50px;
             height: 50px;
+            background: var(--card-bg);
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 15px;
+            border-radius: 12px;
             text-decoration: none;
-            transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .btn:hover {
-            background: #38bdf8;
-            transform: scale(1.1);
+        .social-links a:hover {
+            color: var(--accent-color);
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            background: rgba(56, 189, 248, 0.1);
         }
-    </style>
-</head>
-<body>
-    <div class="card">
-        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=38bdf8&color=fff'">
-        <h1>Prabin Thapa</h1>
-        <div class="subtitle">Learner & Creative</div>
-        <div class="socials">
-            <a href="https://youtube.com/@allin1326" class="btn"><i class="fab fa-youtube"></i></a>
-            <a href="https://facebook.com/prabinthapa77777" class="btn"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://github.com/MrCODER-777" class="btn"><i class="fab fa-github"></i></a>
-        </div>
-    </div>
-</body>
-</html>
+
+        /* Footer */
+        .copyright {
+            margin-top: 4rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary
