@@ -30,60 +30,53 @@
             flex-direction: column;
             align-items: flex-start;
             padding: 20px;
+            perspective: 1200px;
         }
 
-        /* HEADLINE: Attractive Purple Font & Glow Animation */
+        /* 3D HEADLINE: Dark Purple with Dark Outline */
         h1 {
             font-family: 'Syncopate', sans-serif;
-            font-size: 2.8rem;
+            font-size: 3.5rem;
             text-transform: uppercase;
             margin-bottom: 15px;
-            /* Vibrant Purple Gradient */
-            background: linear-gradient(90deg, #a855f7, #ec4899, #a855f7);
-            background-size: 200% auto;
+            
+            /* Deep Purple Gradient */
+            background: linear-gradient(to bottom, #4c1d95, #2e1065);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            /* Combined Shine and Pulsing Glow */
-            animation: shine 4s linear infinite, glow 2s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
+
+            /* THE DARK OUTLINER */
+            -webkit-text-stroke: 1.5px #1a0633; 
+            
+            /* Enhanced Dark 3D Shadows */
+            text-shadow: 
+                0 1px 0 #2e1065,
+                0 2px 0 #1e1b4b,
+                0 3px 0 #1a0633,
+                0 4px 0 #000,
+                0 10px 20px rgba(0,0,0,0.9);
+            
+            animation: float3D 5s ease-in-out infinite;
+            transform-style: preserve-3d;
         }
 
-        @keyframes glow {
-            0%, 100% { filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.5)); }
-            50% { filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8)); }
+        @keyframes float3D {
+            0%, 100% { transform: rotateY(-10deg) rotateX(5deg) translateY(0); }
+            50% { transform: rotateY(10deg) rotateX(-5deg) translateY(-15px); }
         }
 
-        /* SOCIALS: Official Brand Colors */
         .socials {
             display: flex;
             gap: 25px;
             margin-bottom: 40px;
         }
 
-        .socials a {
-            font-size: 1.8rem;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
+        .socials a { font-size: 1.8rem; transition: 0.3s; }
+        .socials a:hover { transform: scale(1.3) rotate(8deg); }
 
-        .socials a:hover {
-            transform: scale(1.2) translateY(-5px);
-        }
-
-        /* YouTube Red */
-        .yt { color: #FF0000; }
-        .yt:hover { filter: drop-shadow(0 0 15px #FF0000); }
-
-        /* Facebook Blue */
-        .fb { color: #1877F2; }
-        .fb:hover { filter: drop-shadow(0 0 15px #1877F2); }
-
-        /* GitHub Black/White contrast */
-        .gh { color: #ffffff; background: #000; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
-        .gh:hover { filter: drop-shadow(0 0 15px #ffffff); }
-
-        .about-section {
-            width: 100%;
-        }
+        .yt { color: #FF0000; filter: drop-shadow(0 2px 8px rgba(255,0,0,0.4)); }
+        .fb { color: #1877F2; filter: drop-shadow(0 2px 8px rgba(24,119,242,0.4)); }
+        .gh { color: #ffffff; filter: drop-shadow(0 2px 8px rgba(255,255,255,0.4)); }
 
         .about-label {
             font-family: 'Montserrat', sans-serif;
@@ -94,7 +87,6 @@
             font-weight: 900;
             margin-bottom: 20px;
             display: block;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         #typing-area {
@@ -104,14 +96,7 @@
             line-height: 1.6;
             display: inline;
             position: relative;
-            text-shadow: 0 2px 15px rgba(0,0,0,0.9);
-        }
-
-        #cursor-wrapper {
-            display: inline-block;
-            position: relative;
-            width: 0; height: 0;
-            vertical-align: baseline;
+            text-shadow: 0 2px 15px rgba(0,0,0,1);
         }
 
         #pen {
@@ -120,25 +105,21 @@
             bottom: -5px; 
             left: -10px;
             transform: rotate(-15deg);
-            white-space: nowrap;
             pointer-events: none;
-            transition: transform 0.1s ease;
         }
-
-        @keyframes shine { to { background-position: 200% center; } }
 
         .profile-img {
             width: 140px; height: 140px;
             border-radius: 50%;
-            border: 3px solid #a855f7; /* Purple border to match theme */
+            border: 4px solid #2e1065; 
             margin-bottom: 25px;
             object-fit: cover;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.7);
         }
 
         @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
             .content-wrapper { margin-left: 5%; width: 90%; }
-            h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -146,7 +127,7 @@
 
     <div class="content-wrapper">
         <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
-             onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=a855f7&color=fff'">
+             onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=2e1065&color=fff'">
         
         <h1>Prabin Thapa</h1>
         
