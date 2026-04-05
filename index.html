@@ -3,226 +3,66 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prabin Thapa | Digital Presence</title>
+    <title>Prabin Thapa | Creative Showcase</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #00d2ff;
-            --secondary: #928DAB;
-            --accent: #ff007a;
-            --bg: #050505;
+            --cyan: #38bdf8;
+            --magenta: #ec4899;
+            --gold: #f59e0b;
+            --bg: #030611;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg);
-            color: #fff;
-            font-family: 'Outfit', sans-serif;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             overflow: hidden;
+            perspective: 1000px; /* Essential for 3D Tilt */
         }
 
-        /* Animated Mesh Background */
+        /* 1. Animated Mesh Background Orbs */
         .universe {
             position: fixed;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            background: radial-gradient(circle at 50% 50%, #111 0%, #000 100%);
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            filter: blur(80px);
+            opacity: 0.6;
         }
 
-        .star {
+        .orb {
             position: absolute;
-            background: white;
             border-radius: 50%;
-            opacity: 0.3;
-            animation: twinkle var(--duration) infinite;
+            animation: orbMove 15s infinite alternate ease-in-out;
         }
 
-        @keyframes twinkle {
-            0%, 100% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.5); opacity: 0.7; }
+        .orb-1 { width: 400px; height: 400px; background: var(--cyan); top: -10%; left: -10%; }
+        .orb-2 { width: 500px; height: 500px; background: var(--magenta); bottom: -10%; right: -10%; animation-delay: -5s; }
+        .orb-3 { width: 300px; height: 300px; background: var(--gold); top: 50%; left: 50%; animation-delay: -10s; }
+
+        @keyframes orbMove {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 50px) scale(1.2); }
         }
 
-        /* The Card Container */
-        .container {
-            perspective: 1000px;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 40px;
-            padding: 60px 40px;
-            width: 380px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
-            transform-style: preserve-3d;
-            animation: fadeIn 1.2s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Neon Profile Ring */
-        .profile-container {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 30px;
-        }
-
-        .profile-container::before {
+        /* 2. Particle Canvas (Optional, needs JavaScript, but CSS particles work too) */
+        .card::after {
             content: '';
             position: absolute;
-            inset: -5px;
-            border-radius: 50%;
-            background: conic-gradient(from 0deg, var(--primary), var(--accent), var(--primary));
-            animation: rotate 4s linear infinite;
+            inset: 0;
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
             z-index: -1;
-            filter: blur(8px);
         }
 
-        @keyframes rotate {
-            to { transform: rotate(360deg); }
-        }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--bg);
-        }
-
-        /* Typography */
-        h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-            background: linear-gradient(45deg, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 6px 16px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 100px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary);
-            margin-bottom: 30px;
-        }
-
-        /* Social Icons */
-        .social-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-item {
-            width: 55px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.4rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .social-item:hover {
-            background: #fff;
-            color: #000;
-            transform: translateY(-10px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(0, 210, 255, 0.3);
-        }
-
-        footer {
-            position: absolute;
-            bottom: 30px;
-            font-size: 0.7rem;
-            letter-spacing: 3px;
-            opacity: 0.4;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="universe" id="universe"></div>
-
-    <div class="container">
-        <div class="glass-card" id="card">
-            <div class="profile-container">
-                <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=00d2ff&color=fff&bold=true'">
-            </div>
-            
-            <h1>Prabin Thapa</h1>
-            <div class="badge">Learner & Creative</div>
-            
-            <div class="social-group">
-                <a href="https://youtube.com/@allin1326" class="social-item"><i class="fab fa-youtube"></i></a>
-                <a href="https://facebook.com/prabinthapa77777" class="social-item"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://github.com/MrCODER-777" class="social-item"><i class="fab fa-github"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <footer>PRABIN THAPA &bull; 2026</footer>
-
-    <script>
-        // Create Background Stars
-        const universe = document.getElementById('universe');
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            const size = Math.random() * 3;
-            star.style.width = size + 'px';
-            star.style.height = size + 'px';
-            star.style.top = Math.random() * 100 + '%';
-            star.style.left = Math.random() * 100 + '%';
-            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
-            universe.appendChild(star);
-        }
-
-        // 3D Tilt Effect
-        const card = document.getElementById('card');
-        document.addEventListener('mousemove', (e) => {
-            let xAxis = (window.innerWidth / 2 - e.pageX) / 25;
-            let yAxis = (window.innerHeight / 2 - e.pageY) / 25;
-            card.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
-
-        document.addEventListener('mouseleave', () => {
-            card.style.transform = `rotateY(0deg) rotateX(0deg)`;
-            card.style.transition = "all 0.5s ease";
-        });
-
-        document.addEventListener('mouseenter', () => {
-            card.style.transition = "none";
-        });
-    </script>
-</body>
-</html>
+        /* 3. The
