@@ -22,28 +22,21 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* GLASS CARD: Full Transparency & Fixed Size */
+        /* GLASS CARD: Transparent background, fixed height */
         .glass-card {
             margin-left: 8%;
-            /* 100% Transparent background */
-            background: rgba(255, 255, 255, 0.0); 
+            background: rgba(255, 255, 255, 0.0); /* 100% Transparent */
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            
-            /* Border and Frame */
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-left: 6px solid #ff4d4d; 
-            border-radius: 40px;
-            
-            /* Fixed dimensions to prevent jumping */
-            width: 500px;
-            height: 600px; 
+            border-left: 6px solid #ff4d4d; /* Signature Red Line */
+            border-radius: 0 40px 40px 0;
             padding: 50px;
+            width: 550px;
+            height: 600px; /* Fixed height to stop expansion */
             display: flex;
             flex-direction: column;
             align-items: center;
-            
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
+            box-shadow: 20px 0 50px rgba(0, 0, 0, 0.3);
         }
 
         h1 {
@@ -62,7 +55,7 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .socials a {
@@ -71,20 +64,18 @@
             width: 45px; height: 45px;
             display: flex; align-items: center; justify-content: center;
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: 0.3s;
         }
 
-        .socials a:hover { background: #38bdf8; transform: translateY(-3px); }
+        .socials a:hover { background: #38bdf8; transform: scale(1.1); }
 
-        /* FIXED AREA: This prevents the text from pushing the card boundaries */
+        /* ABOUT SECTION: No frame, fixed height */
         .about-container {
-            width: 100%;
             text-align: left;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 20px;
-            flex-grow: 1; 
-            overflow: hidden;
+            width: 100%;
+            padding-top: 10px;
+            flex-grow: 1; /* Takes up remaining space */
+            position: relative;
         }
 
         .about-label {
@@ -101,7 +92,7 @@
         #typing-area {
             font-family: 'Dancing Script', cursive;
             color: #ffffff;
-            font-size: 1.6rem;
+            font-size: 1.7rem;
             line-height: 1.6;
             display: inline;
             position: relative;
@@ -116,7 +107,7 @@
 
         #pen {
             position: absolute;
-            font-size: 1.8rem;
+            font-size: 2rem;
             bottom: -5px; 
             left: -10px;
             transform: rotate(-15deg);
@@ -128,12 +119,16 @@
         @keyframes shine { to { background-position: 200% center; } }
 
         .profile-img {
-            width: 120px; height: 120px;
+            width: 130px; height: 130px;
             border-radius: 50%;
             border: 3px solid #38bdf8;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             object-fit: cover;
-            flex-shrink: 0;
+            flex-shrink: 0; /* Prevents image from shrinking */
+        }
+
+        @media (max-width: 600px) {
+            .glass-card { margin-left: 0; width: 95%; height: auto; padding: 30px; }
         }
     </style>
 </head>
@@ -171,7 +166,7 @@
                 target.innerHTML += char;
                 index++;
 
-                // Movement logic for pen
+                // Subtle Pen Movement
                 if (/[A-Z|t|l|d|k|f|h]/.test(char)) {
                     pen.style.transform = "rotate(-22deg) translateY(-4px)";
                 } else if (/[g|j|p|q|y]/.test(char)) {
@@ -180,9 +175,9 @@
                     pen.style.transform = "rotate(-15deg) translateY(0px)";
                 }
 
-                let speed = Math.random() * 50 + 40;
+                let speed = Math.random() * 40 + 40;
                 if (char === " ") speed = 110;
-                if (char === ".") speed = 550;
+                if (char === ".") speed = 600;
 
                 setTimeout(type, speed);
             } else {
