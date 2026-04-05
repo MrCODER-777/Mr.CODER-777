@@ -14,7 +14,6 @@
         body {
             height: 100vh;
             width: 100vw;
-            /* Your background image is the only background now */
             background: #030611 url('Background.jpg') no-repeat center center/cover;
             display: flex;
             align-items: center; 
@@ -23,45 +22,64 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* CONTAINER: No box, No glass, No borders */
         .content-wrapper {
             margin-left: 8%;
             width: 550px;
-            /* Fixed height area to keep details over the background stable */
             min-height: 600px;
             display: flex;
             flex-direction: column;
-            align-items: flex-start; /* Aligned left for a professional look */
+            align-items: flex-start;
             padding: 20px;
         }
 
+        /* HEADLINE: Attractive Purple Font & Glow Animation */
         h1 {
             font-family: 'Syncopate', sans-serif;
             font-size: 2.8rem;
             text-transform: uppercase;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #fff, #38bdf8, #fff);
+            margin-bottom: 15px;
+            /* Vibrant Purple Gradient */
+            background: linear-gradient(90deg, #a855f7, #ec4899, #a855f7);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 4s linear infinite;
-            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
+            /* Combined Shine and Pulsing Glow */
+            animation: shine 4s linear infinite, glow 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
         }
 
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8)); }
+        }
+
+        /* SOCIALS: Official Brand Colors */
         .socials {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             margin-bottom: 40px;
         }
 
         .socials a {
-            color: white;
-            font-size: 1.4rem;
-            transition: 0.3s;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
+            font-size: 1.8rem;
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
-        .socials a:hover { color: #38bdf8; transform: scale(1.2); }
+        .socials a:hover {
+            transform: scale(1.2) translateY(-5px);
+        }
+
+        /* YouTube Red */
+        .yt { color: #FF0000; }
+        .yt:hover { filter: drop-shadow(0 0 15px #FF0000); }
+
+        /* Facebook Blue */
+        .fb { color: #1877F2; }
+        .fb:hover { filter: drop-shadow(0 0 15px #1877F2); }
+
+        /* GitHub Black/White contrast */
+        .gh { color: #ffffff; background: #000; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; }
+        .gh:hover { filter: drop-shadow(0 0 15px #ffffff); }
 
         .about-section {
             width: 100%;
@@ -86,8 +104,7 @@
             line-height: 1.6;
             display: inline;
             position: relative;
-            /* Text shadow is essential when there is no box, to keep text readable */
-            text-shadow: 0 2px 15px rgba(0,0,0,0.9), 0 0 5px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 15px rgba(0,0,0,0.9);
         }
 
         #cursor-wrapper {
@@ -106,7 +123,6 @@
             white-space: nowrap;
             pointer-events: none;
             transition: transform 0.1s ease;
-            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
         }
 
         @keyframes shine { to { background-position: 200% center; } }
@@ -114,7 +130,7 @@
         .profile-img {
             width: 140px; height: 140px;
             border-radius: 50%;
-            border: 3px solid #38bdf8;
+            border: 3px solid #a855f7; /* Purple border to match theme */
             margin-bottom: 25px;
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -122,6 +138,7 @@
 
         @media (max-width: 600px) {
             .content-wrapper { margin-left: 5%; width: 90%; }
+            h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -129,14 +146,14 @@
 
     <div class="content-wrapper">
         <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
-             onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=38bdf8&color=fff'">
+             onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=a855f7&color=fff'">
         
         <h1>Prabin Thapa</h1>
         
         <div class="socials">
-            <a href="https://youtube.com/@allin1326" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://facebook.com/prabinthapa77777" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://github.com/MrCODER-777" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://youtube.com/@allin1326" class="yt" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://facebook.com/prabinthapa77777" class="fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/MrCODER-777" class="gh" target="_blank"><i class="fab fa-github"></i></a>
         </div>
 
         <div class="about-section">
@@ -159,7 +176,6 @@
                 target.innerHTML += char;
                 index++;
 
-                // Subtle Pen Movement
                 if (/[A-Z|t|l|d|k|f|h]/.test(char)) {
                     pen.style.transform = "rotate(-22deg) translateY(-4px)";
                 } else if (/[g|j|p|q|y]/.test(char)) {
