@@ -11,11 +11,26 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* --- MOBILE & PC BACKGROUND FIX --- */
+        /* FIXED BACKGROUND LAYER */
+        .bg-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Replace Background.jpg with a lower res version if it still fails */
+            background: url('Background.jpg') no-repeat center center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            z-index: -1;
+            /* Fix for iOS Safari "jumpy" scrolling */
+            will-change: transform;
+        }
+
         body {
             min-height: 100vh;
             width: 100vw;
-            background-color: #030611; /* Dark fallback */
+            background-color: #030611;
             display: flex;
             align-items: center; 
             justify-content: flex-start;
@@ -24,25 +39,9 @@
             perspective: 1200px;
         }
 
-        /* This pseudo-element creates a fixed background layer that won't jump on mobile */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('Background.jpg') no-repeat center center;
-            background-size: cover;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            z-index: -1;
-            /* Prevents the 'white bar' issue on iOS Safari */
-            transform: translateZ(0); 
-        }
-
         .content-wrapper {
+            position: relative;
+            z-index: 1;
             margin-left: 8%;
             width: 550px;
             height: 600px; 
@@ -98,17 +97,7 @@
         }
 
         #cursor-wrapper { display: inline-block; position: relative; width: 0; height: 0; vertical-align: baseline; }
-
-        #pen {
-            position: absolute;
-            font-size: 2.2rem;
-            bottom: -5px; 
-            left: -10px;
-            transform: rotate(-15deg);
-            white-space: nowrap;
-            pointer-events: none;
-            transition: transform 0.1s ease;
-        }
+        #pen { position: absolute; font-size: 2.2rem; bottom: -5px; left: -10px; transform: rotate(-15deg); white-space: nowrap; pointer-events: none; transition: transform 0.1s ease; }
 
         .profile-img {
             width: 150px; height: 150px;
@@ -119,20 +108,16 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
 
-        /* --- RESPONSIVE ADJUSTMENTS FOR MOBILE --- */
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
-            .content-wrapper { 
-                margin-left: 5%; 
-                width: 90%; 
-                margin-top: 20px; 
-                justify-content: center; /* Centers content vertically on small screens */
-            }
+            .content-wrapper { margin-left: 5%; width: 90%; margin-top: 20px; }
             #typing-area { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
+
+    <div class="bg-fixed"></div>
 
     <div class="content-wrapper">
         <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
@@ -165,7 +150,6 @@
                 const char = details.charAt(index);
                 target.innerHTML += char;
                 index++;
-
                 if (/[A-Z|t|l|d|k|f|h]/.test(char)) {
                     pen.style.transform = "rotate(-22deg) translateY(-4px)";
                 } else if (/[g|j|p|q|y]/.test(char)) {
@@ -173,18 +157,15 @@
                 } else {
                     pen.style.transform = "rotate(-15deg) translateY(0px)";
                 }
-
                 let speed = Math.random() * 40 + 40;
                 if (char === " ") speed = 100;
                 if (char === ".") speed = 600;
-
                 setTimeout(type, speed);
             } else {
                 pen.style.transition = "opacity 0.6s ease";
                 pen.style.opacity = "0";
             }
         }
-
         window.onload = () => { setTimeout(type, 1000); };
     </script>
 </body>
