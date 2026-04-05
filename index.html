@@ -14,7 +14,7 @@
         body {
             height: 100vh;
             width: 100vw;
-            /* 1. Full Brightness Background */
+            /* Full Brightness Background */
             background-image: url('Background.jpg');
             background-size: cover;
             background-position: center;
@@ -23,48 +23,52 @@
             font-family: 'Inter', sans-serif;
             overflow: hidden;
             position: relative;
+            display: flex;
+            align-items: center; /* Centers vertically (Middle) */
+            justify-content: flex-start; /* Aligns to the left */
         }
 
-        /* 2. THE CONTAINER - This ensures your details show up */
+        /* THE CONTAINER - Positioned Middle-Left */
         .details-box {
-            position: absolute;
-            bottom: 40px; /* Distance from bottom */
-            right: 40px;  /* Distance from right */
-            
-            background: rgba(15, 23, 42, 0.9); /* Dark background for visibility */
-            backdrop-filter: blur(10px);
-            border: 2px solid #38bdf8;
-            border-radius: 20px;
-            padding: 30px;
-            width: 320px;
+            margin-left: 60px; /* Distance from the left edge */
+            background: rgba(15, 23, 42, 0.85); /* Darker semi-transparent box for text visibility */
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 50px 40px;
+            width: 350px;
             text-align: center;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            z-index: 9999; /* Forces this to be at the very front */
-            animation: slideIn 0.8s ease-out;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            z-index: 999; /* Ensures it sits ON TOP of the background image */
+            animation: slideInLeft 1s ease-out;
         }
 
         .profile-img {
-            width: 100px;
-            height: 100px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            border: 3px solid #38bdf8;
-            margin-bottom: 15px;
+            border: 4px solid #38bdf8;
+            margin-bottom: 20px;
             object-fit: cover;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
         }
 
         h1 {
             color: #ffffff;
-            font-size: 1.6rem;
+            font-size: 2.2rem;
             margin-bottom: 5px;
             text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
         .tagline {
             color: #38bdf8;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            font-weight: 400;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
         .socials {
@@ -76,40 +80,27 @@
         .socials a {
             color: white;
             background: rgba(255, 255, 255, 0.1);
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
+            border-radius: 12px;
             text-decoration: none;
-            transition: 0.3s;
-            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .socials a:hover {
             background: #38bdf8;
             color: #0f172a;
-            transform: translateY(-5px);
+            transform: translateY(-5px) scale(1.1);
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(50px); }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* Mobile View */
-        @media (max-width: 500px) {
-            .details-box {
-                bottom: 20px;
-                right: 20px;
-                left: 20px;
-                width: auto;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="details-box">
-        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin
+        /* Mobile View: Centers
