@@ -13,108 +13,105 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Inter', sans-serif;
-            /* The Background Image */
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('Background.jpg');
+            width: 100vw;
+            /* Full brightness background - no dark overlay */
+            background-image: url('Background.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            color: white;
+            background-repeat: no-repeat;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevents scrollbars if image is large */
         }
 
-        /* This container ensures your details stay ON TOP */
+        /* Positioning the card in the bottom-right corner */
         .glass-card {
-            background: rgba(255, 255, 255, 0.05);
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            
+            /* Glass effect with higher contrast to stay readable on bright backgrounds */
+            background: rgba(15, 23, 42, 0.8); 
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            padding: 50px 30px;
-            width: 360px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 35px;
+            width: 320px;
             text-align: center;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            z-index: 10; /* Forces content to the front */
-            animation: fadeIn 1s ease-out;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            animation: slideIn 1s ease-out;
         }
 
         .profile-img {
-            width: 140px;
-            height: 140px;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
-            border: 4px solid #38bdf8;
+            border: 3px solid #38bdf8;
             object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+            margin-bottom: 15px;
         }
 
         h1 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             margin: 0;
+            color: #ffffff;
             text-transform: uppercase;
-            background: linear-gradient(to bottom, #fff, #38bdf8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .tagline {
-            color: #94a3b8;
+            color: #38bdf8;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-size: 0.8rem;
-            margin: 10px 0 30px;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            margin: 8px 0 25px;
+            font-weight: 700;
         }
 
         .social-nav {
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .social-nav a {
             color: white;
             background: rgba(255, 255, 255, 0.1);
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 12px;
+            border-radius: 10px;
             text-decoration: none;
             transition: 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .social-nav a:hover {
             background: #38bdf8;
-            color: #000;
-            transform: translateY(-5px);
+            color: #0f172a;
+            transform: scale(1.1);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            .glass-card {
+                bottom: 20px;
+                right: 20px;
+                left: 20px; /* Center it on small phones */
+                width: auto;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="glass-card">
-        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=38bdf8&color=fff&size=128'">
-        
-        <h1>Prabin Thapa</h1>
-        <div class="tagline">Digital Explorer & Learner</div>
-        
-        <nav class="social-nav">
-            <a href="https://youtube.com/@allin1326" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://facebook.com/prabinthapa77777" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://github.com/MrCODER-777" target="_blank"><i class="fab fa-github"></i></a>
-        </nav>
-    </div>
-
-</body>
-</html>
+        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" onerror="this.src='
