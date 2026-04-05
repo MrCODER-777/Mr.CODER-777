@@ -6,15 +6,16 @@
     <title>Prabin Thapa | Official</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* 1. THE FOUNDATION */
         body {
             height: 100vh;
             width: 100vw;
-            background-color: #000; /* Dark base */
+            background-color: #030611;
             font-family: 'Inter', sans-serif;
             display: flex;
             align-items: center; 
@@ -23,8 +24,8 @@
             position: relative;
         }
 
-        /* 1. SEPARATED BACKGROUND LAYER */
-        .bg-layer {
+        /* 2. BACKGROUND IMAGE LAYER - Pushed to the very bottom */
+        .master-bg {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
@@ -32,30 +33,59 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            z-index: 1; /* Sits at the bottom */
+            z-index: 1; /* Lowest layer */
         }
 
-        /* 2. THE CARD - MAXIMUM TRANSPARENCY */
-        .details-container {
-            margin-left: 8%; 
+        /* 3. THE CONTENT LAYER - Pulled to the very top */
+        .content-layer {
             position: relative;
-            z-index: 9999; /* HIGHEST PRIORITY - This forces it to show */
-            
-            /* 0.05 opacity is as close to invisible as you can get while keeping the glass look */
-            background: rgba(255, 255, 255, 0.05); 
-            
-            /* High blur creates the 'Glass' look */
+            z-index: 9999; /* Highest priority */
+            margin-left: 8%;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 4. THE MAXIMUM TRANSPARENT CARD */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02); /* 98% Transparent */
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 40px;
-            padding: 60px 40px;
-            width: 380px;
+            padding: 60px 45px;
+            width: 400px;
             text-align: center;
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
-            
             animation: slideInLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* 5. ATTRACTIVE ANIMATED NAME */
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            line-height: 1;
+            
+            /* Animated Chrome-Shine */
+            background: linear-gradient(to right, #fff 0%, #38bdf8 25%, #fff 50%, #38bdf8 75%, #fff 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+        }
+
+        .tagline {
+            color: #38bdf8;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            animation: breathe 3s ease-in-out infinite;
         }
 
         .profile-img {
@@ -64,38 +94,18 @@
             border: 3px solid #38bdf8;
             object-fit: cover;
             margin-bottom: 25px;
-            filter: drop-shadow(0 0 15px rgba(56, 189, 248, 0.4));
-        }
-
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            color: #ffffff;
-            font-size: 2.4rem;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            /* Text shadow is vital for white text on a transparent background */
-            text-shadow: 0 4px 10px rgba(0,0,0,0.8); 
-        }
-
-        .tagline {
-            color: #38bdf8;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
         }
 
         .social-nav {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .social-nav a {
             color: white;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             width: 55px; height: 55px;
             display: flex; align-items: center; justify-content: center;
             border-radius: 15px;
@@ -107,37 +117,38 @@
 
         .social-nav a:hover {
             background: #38bdf8;
-            color: #000;
-            transform: scale(1.15);
+            color: #030611;
+            transform: translateY(-8px);
         }
 
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-150px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+        @keyframes shine { to { background-position: 200% center; } }
+        @keyframes breathe { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-150px); } to { opacity: 1; transform: translateX(0); } }
 
         @media (max-width: 600px) {
-            body { justify-content: center; }
-            .details-container { margin-left: 0; width: 92%; }
+            .content-layer { margin-left: 0; justify-content: center; width: 100%; }
+            .glass-card { width: 92%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-layer"></div>
+    <div class="master-bg"></div>
 
-    <div class="details-container">
-        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
-             onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=38bdf8&color=fff&size=150'">
-        
-        <h1>Prabin Thapa</h1>
-        <div class="tagline">Digital Explorer & Learner</div>
-        
-        <nav class="social-nav">
-            <a href="https://youtube.com/@allin1326" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://facebook.com/prabinthapa77777" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://github.com/MrCODER-777" target="_blank"><i class="fab fa-github"></i></a>
-        </nav>
+    <div class="content-layer">
+        <div class="glass-card">
+            <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
+                 onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=38bdf8&color=fff&size=150'">
+            
+            <h1>Prabin Thapa</h1>
+            <div class="tagline">Digital Explorer & Learner</div>
+            
+            <nav class="social-nav">
+                <a href="https://youtube.com/@allin1326" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="https://facebook.com/prabinthapa77777" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://github.com/MrCODER-777" target="_blank"><i class="fab fa-github"></i></a>
+            </nav>
+        </div>
     </div>
 
 </body>
