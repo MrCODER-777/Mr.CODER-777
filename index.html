@@ -9,45 +9,65 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@900&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     
     <style>
+        /* --- CORE RESET --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* --- THE ULTIMATE BACKGROUND STRATEGY --- */
-        html, body {
-            height: 100%;
+        /* Fixes the Chrome Mobile Address Bar issue */
+        html {
+            height: -webkit-fill-available;
             width: 100%;
             background-color: #030611;
-            overflow-x: hidden;
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Dedicated background layer to fix wide-image scaling */
-        .bg-fixed {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('Background.jpg');
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            z-index: -1;
-            /* Fix for mobile Safari flickering */
-            transform: translateZ(0);
-            -webkit-transform: translateZ(0);
+            overflow: hidden;
         }
 
         body {
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            width: 100%;
+            margin: 0;
             display: flex;
             align-items: center; 
             justify-content: flex-start;
+            font-family: 'Inter', sans-serif;
             perspective: 1200px;
+            overflow-x: hidden;
+            background: transparent;
         }
 
+        /* --- THE BACKGROUND FIX --- */
+        .full-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            height: -webkit-fill-available; /* Forces background to ignore address bar */
+            z-index: -1;
+            background: url('Background.jpg') no-repeat center center;
+            background-size: cover; /* Desktop default */
+            transform: translateZ(0); /* Hardware acceleration */
+        }
+
+        /* --- MOBILE SPECIFIC SCALING --- */
+        @media (max-width: 768px) {
+            .full-bg {
+                /* Because your image is 1753x726 (wide), we lock height to 100% 
+                   and let the width overflow so it doesn't look zoomed/cut */
+                background-size: auto 100%;
+            }
+            .content-wrapper {
+                margin-left: 5% !important;
+                width: 90% !important;
+                margin-top: 0;
+            }
+            h1 { font-size: 2.2rem !important; }
+            #typing-area { font-size: 1.4rem !important; }
+        }
+
+        /* --- CONTENT LAYOUT --- */
         .content-wrapper {
             margin-left: 8%;
             width: 550px;
-            min-height: 600px; 
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -56,7 +76,6 @@
             z-index: 10;
         }
 
-        /* 3D RAINBOW HEADLINE */
         h1 {
             font-family: 'Syncopate', sans-serif;
             font-size: 3.5rem;
@@ -69,7 +88,6 @@
             -webkit-text-fill-color: transparent;
             text-shadow: 0 1px 0 rgba(255,255,255,0.1), 0 2px 0 rgba(0,0,0,0.4), 0 3px 0 rgba(0,0,0,0.5), 0 4px 0 rgba(0,0,0,0.6), 0 10px 20px rgba(0,0,0,0.8);
             animation: rainbowFlow 8s linear infinite, float3D 5s ease-in-out infinite;
-            transform-style: preserve-3d;
         }
 
         @keyframes rainbowFlow { 0% { background-position: 0% center; } 100% { background-position: 400% center; } }
@@ -79,7 +97,6 @@
         .socials a { font-size: 2rem; transition: 0.4s; }
         .yt { color: #FF0000; } .fb { color: #1877F2; } .gh { color: #ffffff; }
 
-        .about-section { width: 100%; display: block; }
         .about-label {
             font-family: 'Montserrat', sans-serif;
             color: #ff4d4d;
@@ -102,17 +119,7 @@
         }
 
         #cursor-wrapper { display: inline-block; position: relative; width: 0; height: 0; vertical-align: baseline; }
-        
-        #pen {
-            position: absolute;
-            font-size: 2.2rem;
-            bottom: -5px; 
-            left: -10px;
-            transform: rotate(-15deg);
-            white-space: nowrap;
-            pointer-events: none;
-            transition: transform 0.1s ease;
-        }
+        #pen { position: absolute; font-size: 2.2rem; bottom: -5px; left: -10px; transform: rotate(-15deg); white-space: nowrap; transition: transform 0.1s ease; }
 
         .profile-img {
             width: 150px; height: 150px;
@@ -122,22 +129,11 @@
             object-fit: cover;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
         }
-
-        /* --- MOBILE TWEAKS --- */
-        @media (max-width: 768px) {
-            .bg-fixed {
-                /* Forces the wide image to fill the height of the phone */
-                background-size: auto 100%; 
-            }
-            h1 { font-size: 2.2rem; }
-            .content-wrapper { margin-left: 5%; width: 90%; margin-top: 10px; }
-            #typing-area { font-size: 1.4rem; }
-        }
     </style>
 </head>
 <body>
 
-    <div class="bg-fixed"></div>
+    <div class="full-bg"></div>
 
     <div class="content-wrapper">
         <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
@@ -170,28 +166,19 @@
                 const char = details.charAt(index);
                 target.innerHTML += char;
                 index++;
-
-                if (/[A-Z|t|l|d|k|f|h]/.test(char)) {
-                    pen.style.transform = "rotate(-22deg) translateY(-4px)";
-                } else if (/[g|j|p|q|y]/.test(char)) {
-                    pen.style.transform = "rotate(-10deg) translateY(4px)";
-                } else {
-                    pen.style.transform = "rotate(-15deg) translateY(0px)";
-                }
-
+                if (/[A-Z|t|l|d|k|f|h]/.test(char)) { pen.style.transform = "rotate(-22deg) translateY(-4px)"; }
+                else if (/[g|j|p|q|y]/.test(char)) { pen.style.transform = "rotate(-10deg) translateY(4px)"; }
+                else { pen.style.transform = "rotate(-15deg) translateY(0px)"; }
                 let speed = Math.random() * 40 + 40;
                 if (char === " ") speed = 100;
                 if (char === ".") speed = 600;
-
                 setTimeout(type, speed);
             } else {
-                pen.style.transition = "opacity 0.6s ease";
                 pen.style.opacity = "0";
+                pen.style.transition = "opacity 0.6s ease";
             }
         }
-
         window.onload = () => { setTimeout(type, 1000); };
     </script>
-
 </body>
 </html>
