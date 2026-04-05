@@ -14,6 +14,7 @@
         body {
             height: 100vh;
             width: 100vw;
+            /* Your background image is the only background now */
             background: #030611 url('Background.jpg') no-repeat center center/cover;
             display: flex;
             align-items: center; 
@@ -22,27 +23,21 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* THE MAIN CARD - Fixed Size, Fully Transparent */
-        .glass-card {
+        /* CONTAINER: No box, No glass, No borders */
+        .content-wrapper {
             margin-left: 8%;
-            background: rgba(255, 255, 255, 0); /* 100% Transparent */
-            backdrop-filter: blur(15px); /* Only blurs the background image */
-            -webkit-backdrop-filter: blur(15px);
-            
-            border-left: 6px solid #ff4d4d; /* Your signature Red line */
-            padding: 40px;
-            width: 520px;
-            height: 600px; /* FIXED HEIGHT: Prevents expanding */
-            
+            width: 550px;
+            /* Fixed height area to keep details over the background stable */
+            min-height: 600px;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            transition: 0.3s;
+            align-items: flex-start; /* Aligned left for a professional look */
+            padding: 20px;
         }
 
         h1 {
             font-family: 'Syncopate', sans-serif;
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             text-transform: uppercase;
             margin-bottom: 10px;
             background: linear-gradient(90deg, #fff, #38bdf8, #fff);
@@ -50,51 +45,49 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: shine 4s linear infinite;
+            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.5));
         }
 
         .socials {
             display: flex;
-            justify-content: center;
             gap: 20px;
             margin-bottom: 40px;
         }
 
         .socials a {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 1.2rem;
+            color: white;
+            font-size: 1.4rem;
             transition: 0.3s;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.8));
         }
 
         .socials a:hover { color: #38bdf8; transform: scale(1.2); }
 
-        /* ABOUT SECTION: No frame, No border, No separate background */
-        .about-details {
+        .about-section {
             width: 100%;
-            text-align: left;
-            flex-grow: 1; /* Fills the fixed height card */
-            position: relative;
-            overflow: hidden; /* Keeps the typing contained */
         }
 
         .about-label {
             font-family: 'Montserrat', sans-serif;
             color: #ff4d4d;
-            font-size: 0.9rem;
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             font-weight: 900;
             margin-bottom: 20px;
             display: block;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
 
         #typing-area {
             font-family: 'Dancing Script', cursive;
             color: #ffffff;
-            font-size: 1.7rem;
+            font-size: 1.8rem;
             line-height: 1.6;
             display: inline;
             position: relative;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* Makes text pop over any background */
+            /* Text shadow is essential when there is no box, to keep text readable */
+            text-shadow: 0 2px 15px rgba(0,0,0,0.9), 0 0 5px rgba(0,0,0,0.5);
         }
 
         #cursor-wrapper {
@@ -106,34 +99,35 @@
 
         #pen {
             position: absolute;
-            font-size: 2rem;
+            font-size: 2.2rem;
             bottom: -5px; 
             left: -10px;
             transform: rotate(-15deg);
             white-space: nowrap;
             pointer-events: none;
             transition: transform 0.1s ease;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
         }
 
         @keyframes shine { to { background-position: 200% center; } }
 
         .profile-img {
-            width: 120px; height: 120px;
+            width: 140px; height: 140px;
             border-radius: 50%;
-            border: 2px solid #38bdf8;
-            margin-bottom: 20px;
+            border: 3px solid #38bdf8;
+            margin-bottom: 25px;
             object-fit: cover;
-            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         @media (max-width: 600px) {
-            .glass-card { margin-left: 0; width: 95%; margin: auto; height: auto; }
+            .content-wrapper { margin-left: 5%; width: 90%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="glass-card">
+    <div class="content-wrapper">
         <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" 
              onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=38bdf8&color=fff'">
         
@@ -145,7 +139,7 @@
             <a href="https://github.com/MrCODER-777" target="_blank"><i class="fab fa-github"></i></a>
         </div>
 
-        <div class="about-details">
+        <div class="about-section">
             <span class="about-label">About Me</span>
             <div id="typing-area">
                 <span id="text-target"></span><span id="cursor-wrapper"><span id="pen">🖋️</span></span>
@@ -165,7 +159,7 @@
                 target.innerHTML += char;
                 index++;
 
-                // Subtle Pen Tilt
+                // Subtle Pen Movement
                 if (/[A-Z|t|l|d|k|f|h]/.test(char)) {
                     pen.style.transform = "rotate(-22deg) translateY(-4px)";
                 } else if (/[g|j|p|q|y]/.test(char)) {
