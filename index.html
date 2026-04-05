@@ -3,66 +3,95 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prabin Thapa | Creative Showcase</title>
-    
+    <title>Prabin Thapa | Official</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700;800&display=swap" rel="stylesheet">
-    
     <style>
-        :root {
-            --cyan: #38bdf8;
-            --magenta: #ec4899;
-            --gold: #f59e0b;
-            --bg: #030611;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
-            background-color: var(--bg);
-            color: #ffffff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            background: radial-gradient(circle at center, #1e293b 0%, #030611 100%);
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            font-family: 'Segoe UI', sans-serif;
             overflow: hidden;
-            perspective: 1000px; /* Essential for 3D Tilt */
         }
 
-        /* 1. Animated Mesh Background Orbs */
-        .universe {
-            position: fixed;
-            width: 100vw; height: 100vh;
-            z-index: -2;
-            filter: blur(80px);
-            opacity: 0.6;
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 40px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            animation: float 6s ease-in-out infinite;
         }
 
-        .orb {
-            position: absolute;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            animation: orbMove 15s infinite alternate ease-in-out;
+            border: 3px solid #38bdf8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            margin-bottom: 20px;
         }
 
-        .orb-1 { width: 400px; height: 400px; background: var(--cyan); top: -10%; left: -10%; }
-        .orb-2 { width: 500px; height: 500px; background: var(--magenta); bottom: -10%; right: -10%; animation-delay: -5s; }
-        .orb-3 { width: 300px; height: 300px; background: var(--gold); top: 50%; left: 50%; animation-delay: -10s; }
-
-        @keyframes orbMove {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(100px, 50px) scale(1.2); }
+        h1 {
+            color: white;
+            margin: 10px 0;
+            font-size: 2rem;
         }
 
-        /* 2. Particle Canvas (Optional, needs JavaScript, but CSS particles work too) */
-        .card::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-            opacity: 0.3;
-            z-index: -1;
+        .subtitle {
+            color: #38bdf8;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            margin-bottom: 30px;
         }
 
-        /* 3. The
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .btn {
+            color: white;
+            background: rgba(255,255,255,0.1);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #38bdf8;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <img src="prabinthapa.jpg" class="profile-img" alt="Prabin" onerror="this.src='https://ui-avatars.com/api/?name=Prabin+Thapa&background=38bdf8&color=fff'">
+        <h1>Prabin Thapa</h1>
+        <div class="subtitle">Learner & Creative</div>
+        <div class="socials">
+            <a href="https://youtube.com/@allin1326" class="btn"><i class="fab fa-youtube"></i></a>
+            <a href="https://facebook.com/prabinthapa77777" class="btn"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://github.com/MrCODER-777" class="btn"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+</body>
+</html>
