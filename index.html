@@ -14,10 +14,7 @@
         body {
             height: 100vh;
             width: 100vw;
-            background: #030611 linear-gradient(135deg, #030611 0%, #0a0a2e 100%);
-            background-image: url('Background.jpg');
-            background-size: cover;
-            background-position: center;
+            background: #030611 url('Background.jpg') no-repeat center center/cover;
             display: flex;
             align-items: center; 
             justify-content: flex-start;
@@ -25,17 +22,28 @@
             font-family: 'Inter', sans-serif;
         }
 
+        /* GLASS CARD: Full Transparency & Fixed Size */
         .glass-card {
             margin-left: 8%;
-            background: rgba(10, 10, 20, 0.5); 
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            /* 100% Transparent background */
+            background: rgba(255, 255, 255, 0.0); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            
+            /* Border and Frame */
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 6px solid #ff4d4d; 
             border-radius: 40px;
-            padding: 50px;
+            
+            /* Fixed dimensions to prevent jumping */
             width: 500px;
-            text-align: center;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+            height: 600px; 
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
         }
 
         h1 {
@@ -59,20 +67,24 @@
 
         .socials a {
             color: white;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.1);
             width: 45px; height: 45px;
             display: flex; align-items: center; justify-content: center;
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: 0.3s;
         }
 
         .socials a:hover { background: #38bdf8; transform: translateY(-3px); }
 
+        /* FIXED AREA: This prevents the text from pushing the card boundaries */
         .about-container {
+            width: 100%;
             text-align: left;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             padding-top: 20px;
+            flex-grow: 1; 
+            overflow: hidden;
         }
 
         .about-label {
@@ -82,16 +94,10 @@
             text-transform: uppercase;
             letter-spacing: 4px;
             font-weight: 900;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             display: block;
-            background: linear-gradient(90deg, #ff4d4d, #ffffff, #ff4d4d);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shine 3s linear infinite;
         }
 
-        /* WRITING AREA */
         #typing-area {
             font-family: 'Dancing Script', cursive;
             color: #ffffff;
@@ -101,19 +107,16 @@
             position: relative;
         }
 
-        /* THE PEN WRAPPER - Attached to the end of text */
         #cursor-wrapper {
             display: inline-block;
             position: relative;
-            width: 0;
-            height: 0;
+            width: 0; height: 0;
             vertical-align: baseline;
         }
 
         #pen {
             position: absolute;
             font-size: 1.8rem;
-            /* Positioning the NIB at the insertion point */
             bottom: -5px; 
             left: -10px;
             transform: rotate(-15deg);
@@ -130,10 +133,7 @@
             border: 3px solid #38bdf8;
             margin-bottom: 20px;
             object-fit: cover;
-        }
-
-        @media (max-width: 600px) {
-            .glass-card { margin-left: 0; width: 92%; margin: auto; }
+            flex-shrink: 0;
         }
     </style>
 </head>
@@ -171,7 +171,7 @@
                 target.innerHTML += char;
                 index++;
 
-                // Subtle Pen Movement (Up/Down based on character)
+                // Movement logic for pen
                 if (/[A-Z|t|l|d|k|f|h]/.test(char)) {
                     pen.style.transform = "rotate(-22deg) translateY(-4px)";
                 } else if (/[g|j|p|q|y]/.test(char)) {
@@ -180,14 +180,12 @@
                     pen.style.transform = "rotate(-15deg) translateY(0px)";
                 }
 
-                // Randomized human speed
                 let speed = Math.random() * 50 + 40;
                 if (char === " ") speed = 110;
                 if (char === ".") speed = 550;
 
                 setTimeout(type, speed);
             } else {
-                // Fade pen out when finished
                 pen.style.transition = "opacity 0.5s ease";
                 pen.style.opacity = "0";
             }
