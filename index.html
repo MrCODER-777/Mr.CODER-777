@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Prabin Thapa | Official</title>
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,16 +11,30 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        /* MOBILE & PC FULL BACKGROUND FIX */
         body {
-            height: 100vh;
+            min-height: 100vh;
             width: 100vw;
-            background: #030611 url('Background.jpg') no-repeat center center/cover;
+            background-color: #030611;
             display: flex;
             align-items: center; 
             justify-content: flex-start;
-            overflow: hidden;
+            overflow-x: hidden;
             font-family: 'Inter', sans-serif;
             perspective: 1200px;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('Background.jpg') no-repeat center center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            z-index: -1;
         }
 
         .content-wrapper {
@@ -80,10 +94,7 @@
         .fb { color: #1877F2; filter: drop-shadow(0 0 8px rgba(24,119,242,0.5)); }
         .gh { color: #ffffff; filter: drop-shadow(0 0 8px rgba(255,255,255,0.5)); }
 
-        .about-section {
-            width: 100%;
-            display: block; /* Ensures section takes full width */
-        }
+        .about-section { width: 100%; display: block; }
 
         .about-label {
             font-family: 'Montserrat', sans-serif;
@@ -92,15 +103,11 @@
             text-transform: uppercase;
             letter-spacing: 6px;
             font-weight: 900;
-            margin-bottom: 15px; /* Space between label and text */
-            display: block; /* Forces it onto its own line */
+            margin-bottom: 15px;
+            display: block;
         }
 
-        /* TYPING AREA CONTAINER */
-        .typing-container {
-            display: block;
-            width: 100%;
-        }
+        .typing-container { display: block; width: 100%; }
 
         #typing-area {
             font-family: 'Dancing Script', cursive;
@@ -141,7 +148,8 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 2.2rem; }
-            .content-wrapper { margin-left: 5%; width: 90%; }
+            .content-wrapper { margin-left: 5%; width: 90%; margin-top: -50px; }
+            #typing-area { font-size: 1.4rem; }
         }
     </style>
 </head>
